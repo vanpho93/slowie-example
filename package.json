@@ -1,78 +1,18 @@
 {
   "name": "slowie-example",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "files": [
-    "dist/**/*"
-  ],
   "license": "MIT",
   "dependencies": {
-    "slowie": "/Users/phonguyen/Desktop/slowie",
-    "@types/mongoose": "5.10.1",
-    "@types/lodash": "4.14.165",
-    "dotenv": "8.2.0",
     "lodash": "4.17.20",
-    "mongoose": "5.10.17",
     "nanoid": "3.1.20",
-    "tslint": "6.1.3"
+    "slowie": "^0.0.2"
   },
   "scripts": {
-    "start": "ts-node --require dotenv/config src/index.ts",
-    "dev": "nodemon --exec yarn start -e ts",
-    "test": "DOTENV_CONFIG_PATH=test.env mocha 'src/**/*.test.ts' --recursive",
-    "coverage-test": "nyc yarn test",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "tslint": "tslint --project tsconfig.json --config tslint.json",
-    "prepublish": "tsc"
+    "start": "ts-node src/index.ts"
   },
   "devDependencies": {
-    "@types/chai": "4.2.14",
-    "@types/mocha": "8.2.0",
-    "chai": "4.3.0",
-    "coveralls": "3.1.0",
-    "mocha": "8.2.1",
-    "nodemon": "2.0.6",
-    "nyc": "15.1.0",
-    "testdouble": "3.16.1",
+    "@types/lodash": "4.14.165",
     "ts-node": "9.0.0",
     "typescript": "4.1.2"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "reporter": [
-      "lcov",
-      "text-summary",
-      "html",
-      "text"
-    ],
-    "sourceMap": true,
-    "instrument": true,
-    "all": true,
-    "check-coverage": true,
-    "exclude": [
-      "src/**/*.test.ts"
-    ],
-    "branches": 100,
-    "lines": 100,
-    "functions": 100,
-    "statements": 100
-  },
-  "mocha": {
-    "full-trace": true,
-    "require": [
-      "dotenv/config",
-      "ts-node/register",
-      "source-map-support/register"
-    ],
-    "bail": false,
-    "timeout": 10000
   }
 }
