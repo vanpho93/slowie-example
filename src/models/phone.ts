@@ -1,4 +1,4 @@
-import { graphql, IField, TypeGenerator } from 'slowie'
+import { EDefaultApis, graphql, IField, TypeGenerator } from 'slowie'
 import { app, IContext } from '../app'
 import { IPhone } from './phone.interface'
 import { builtInFields } from './shared'
@@ -44,6 +44,10 @@ export const Phone = app.createModel<IPhone>({
     countryId,
     country,
   },
+  hideDefaultApis: [
+    EDefaultApis.CREATE,
+    EDefaultApis.REMOVE,
+  ]
 })
 
 Phone.createIndexes()
