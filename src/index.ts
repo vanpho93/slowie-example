@@ -1,45 +1,11 @@
-import { Slowie, graphql } from 'slowie'
+import { app } from './app'
 
-// step 1: Define context interface
-export interface IContext {
-  role: string
-}
+import './models/user'
+import './models/country'
+import './models/phone'
 
-// step 2: Init app and define `context` method, showing how to get context from `req`
-export const app = new Slowie<IContext>({
-  // How to get context from the request
-  context: async (req) => ({ role: req.headers.role || 'GUEST' }),
-})
+import './models/user.hook'
 
-// step 3: Create a model
-interface IUser {
-  email: string
-  countryId: string
-}
-
-export const User = app.createModel<IUser>({
-  name: 'User',
-  schema: {
-    email: {
-      graphql: {
-        default: { type: graphql.GraphQLString },
-        create: { type: graphql.GraphQLNonNull(graphql.GraphQLString) },
-        update: null,
-      },
-      db: { type: String, required: true, unique: true },
-    },
-    countryId: {
-      graphql: {
-        default: { type: graphql.GraphQLString },
-      },
-      db: { type: String },
-    },
-  },
-})
-
-User.createIndexes()
-
-// step 4: Connect database
 app.mongoose.connect(
   'mongodb://localhost:27017/slowie',
   {
@@ -50,7 +16,6 @@ app.mongoose.connect(
   }
 )
 
-// step 5: Start server
 app.getServer().listen(
   3000,
   () => console.log('Play server started at http://localhost:3000')
